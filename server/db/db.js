@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
 import User from "../model/User.js";
-// import dotenv from 'dotenv';
+import dotenv from 'dotenv';
 
-// dotenv.config();
+dotenv.config();
 
-// const USERNAME=process.env.DB_USERNAME;
-// const PASSWORD=process.env.DB_PASSWORD;
+const USERNAME=process.env.DB_USERNAME;
+const PASSWORD=process.env.DB_PASSWORD;
 
 const Connection=async()=>{
-    const URL='mongodb+srv://hrishikeshingole532:Hrushi%40123@cluster0.pz3wt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+    const URL=`mongodb+srv://${USERNAME}:${PASSWORD}@cluster0.pz3wt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
 
     try{
         //useUnfiedTopolgy:true means to tell mongodb that use everything latest

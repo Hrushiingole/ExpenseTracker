@@ -13,6 +13,7 @@ import Groups3Icon from '@mui/icons-material/Groups3';
 import PercentIcon from '@mui/icons-material/Percent';
 import ShieldIcon from '@mui/icons-material/Shield';
 import Equal from './Equal';
+import Exact from './Exact';
 const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
     position: 'relative',
     '&.MuiSpeedDial-directionUp, &.MuiSpeedDial-directionLeft': {
@@ -38,6 +39,13 @@ function Home() {
   
   const [hidden, setHidden] = useState(false)
   const [direction, setDirection] = useState('down');
+  const [section ,setSection]=useState('Equal');
+
+  const handleOnClick=(name)=>{
+    setSection(name);
+  }
+
+
   return (
     <>
     <Box
@@ -80,12 +88,17 @@ function Home() {
               key={action.name}
               icon={action.icon}
               tooltipTitle={action.name}
+              onClick={() => handleOnClick(action.name)} // Correct
+
             />
           ))}
         </StyledSpeedDial>
       </Box>
       <Box sx={{bgcolor:'white',height:'70vh',width:'80vw',borderRadius:'20px',display:'flex',alignItems:'center',justifyContent:"center"}}>
-          <Equal/>
+      {section === 'Equal' && <Equal />}
+                                {section === 'Exact' && <Exact />}
+                                {/* {section === 'Percent' && <Percent />} Render Percent component */}
+                                {/* {section === 'Private' && <Private />} Render Private component */}
       </Box>
       </Box>
     </Box>
