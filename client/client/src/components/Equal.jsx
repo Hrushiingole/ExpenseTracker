@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { TextField, Box, Button } from '@mui/material';
+import { addBillUsers } from '../service/api';
 
 function Equal() {
   const [totalAmount, SetTotalAmount] = useState(0);
   const [totalFriends, SetTotalFriends] = useState(0);
   const [add, SetAdd] = useState(false);
   const [friendNameList, SetFriendNameList] = useState(Array(0).fill("")); // Initialize with empty names
+  const [eachAmount,SetEachAmount]=useState(0);
   const handleOnclick = () => {
-    let eachAmount = totalAmount / totalFriends;
-    console.log(eachAmount);
+    let amount = totalAmount / totalFriends;
+    console.log(amount);
+    SetEachAmount(amount);
     SetAdd(true); // This will toggle `add` to true to conditionally render the box
   };
 
@@ -33,8 +36,10 @@ function Equal() {
     }
     return fields;
   };
-  const handleOnConfirm=()=>{
+  const handleOnConfirm=async()=>{
     console.log("Friend Names:", friendNameList);
+    
+    await addBillUsers(friendNameList,eachAmount);
   }
 
   return (
