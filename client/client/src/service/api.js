@@ -17,3 +17,17 @@ export const addBillUsers =async(friendNameList, eachAmount)=>{
       console.log('error while calling add user api',error.message);
   }
 }
+export const addExactExpense =async(friendNameList, myname)=>{
+    try{
+        const response=await axios.post(`${url}/addExactExpense`,{
+            friend: {
+              friendNameList,
+              myname,
+            },
+          });
+          console.log('Response:', response.data);
+  }
+  catch(error){
+      console.log('error while calling add user api',error.message);
+  }
+}
