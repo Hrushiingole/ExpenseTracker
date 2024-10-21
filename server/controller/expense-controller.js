@@ -103,6 +103,55 @@ export const addExactExpense = async (request, response) => {
 };
 
 
+export const addPercentExpense = async (request, response) => {
+   
+    try {
+      // Loop through each friend in the friendNameList and update their personalExpenses
+      for (let friendName of request.body) {
+        // Find the friend by username and update their personalExpenses
+        await User.findOneAndUpdate(
+          { username: friendName.name }, // Assuming 'username' is the field in your User schema
+          { $inc: { personalExpenses: friendName.amount_to_pay } }, // Increment their personalExpenses by eachAmount
+          { new: true, useFindAndModify: false } // Options to return the updated document
+        );
+      }
+      console.log('percent expense added')
+      return response.status(200).json('Expenses updated successfully for all friends');
+    } catch (error) {
+      console.error(error);
+      return response.status(500).json({ error: 'Error while adding expenses' });
+    }
+  
+      
+  };
+  // controller/expense-controller.js
+
+
+export const getUser = async (req, res) => {
+  const { username } = req.query; // Assuming username is sent as a query parameter
+
+  try {
+    // Validate username
+    if (!username || typeof username !== 'string') {
+      return res.status(400).json({ error: 'Invalid username provided' });
+    }
+
+    // Search the user based on the username
+    const user = await User.findOne({ username: username }); // Use findOne to get a single user
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    return res.status(200).json({ message: 'User found', user: user });
+  } catch (error) {
+    console.error('Error fetching user:', error);
+    return res.status(500).json({ error: 'Error fetching user' });
+  }
+};
+
+  
+
 
   
 

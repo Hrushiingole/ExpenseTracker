@@ -14,6 +14,8 @@ import PercentIcon from '@mui/icons-material/Percent';
 import ShieldIcon from '@mui/icons-material/Shield';
 import Equal from './Equal';
 import Exact from './Exact';
+import Percent from './Percent';
+import Private from './Private';
 const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
     position: 'relative',
     '&.MuiSpeedDial-directionUp, &.MuiSpeedDial-directionLeft': {
@@ -97,8 +99,8 @@ function Home() {
       <Box sx={{bgcolor:'white',height:'70vh',width:'80vw',borderRadius:'20px',display:'flex',alignItems:'center',justifyContent:"center"}}>
       {section === 'Equal' && <Equal />}
                                 {section === 'Exact' && <Exact />}
-                                {/* {section === 'Percent' && <Percent />} Render Percent component */}
-                                {/* {section === 'Private' && <Private />} Render Private component */}
+                                {section === 'Percent' && <Percent />} 
+                                {section === 'Private' && <Private />} 
       </Box>
       </Box>
     </Box>
