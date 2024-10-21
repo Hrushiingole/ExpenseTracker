@@ -11,3 +11,5 @@ npm start
 
 cd server
 npm start
+
+![image](https://github.com/user-attachments/assets/41afba12-6229-4ec1-8655-70677b9cf664)
